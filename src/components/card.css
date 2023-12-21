@@ -1,0 +1,14 @@
+#card {
+    height: 50vh;
+    background-color: red;
+    border-radius: 20px;
+}
+
+#card > * {
+    margin: 0;
+}
+
+#card img {
+    height: 50%;
+    border: 5px solid black;
+}
