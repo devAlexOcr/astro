@@ -32,15 +32,17 @@ function App() {
   };
 
   return (
-    <>
+    <section>
       <h1>ASTRO</h1>
-      {
-          card.map( objet => (
-            <Card objet={objet}></Card>
-          ))
-      }
-
-    </>
+        <h2>Catalogue de Messier</h2>
+        <div id="album_Messier">
+          {
+              card.map( objet => (
+                <Card key={objet.number} objet={objet}></Card>
+              ))
+          }
+        </div>
+    </section>
   )
 }
 

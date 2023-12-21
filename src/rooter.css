@@ -25,6 +25,9 @@ body {
   min-width: 320px;
   min-height: 100vh;
 }
+body > * {
+  color: white;
+}
 
 h1 {
   font-size: 3.2em;
@@ -61,4 +64,13 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+#background_video {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
 }

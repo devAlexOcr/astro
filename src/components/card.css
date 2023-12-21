@@ -1,14 +1,18 @@
 #card {
     height: 50vh;
-    background-color: red;
+    background: linear-gradient(45deg, rgba(0,0,0,1) 0%, rgba(0,53,94,1) 100%);
     border-radius: 20px;
+    margin: 2%;
 }
 
 #card > * {
     margin: 0;
 }
-
+#card h3 {
+    padding: 5%;
+}
 #card img {
     height: 50%;
     border: 5px solid black;
+    opacity: 0.3;
 }
