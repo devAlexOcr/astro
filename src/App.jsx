@@ -1,21 +1,29 @@
 import Card from './components/Card';
 
 import './App.css'
-import { useEffect, useState } from 'react';
+import { useEffect, useState} from 'react';
 
 
 
 function App() {
 
   const [card, setCard] = useState([]);
-  
+  const [option, setOption] = useState("All")
+  function filtre() {
+    const select = document.querySelector('select')
+    console.log(select.value)
+    setOption(select.value)
+  };
+
   useEffect(() => {
+    filtre();
     fetch('https://astro.alexandrepaucdetoc.fr/get',
       {
-        method: 'GET',
+        method: 'POST',
         headers : {
             'Content-Type': 'application/json',
-        }
+        },
+        body: JSON.stringify({option})
       }
     )
     .then(res => {
@@ -31,27 +39,34 @@ function App() {
       console.error('Erreur lors de la requête GET : ', error)
     });
     
-  }, [setCard])
+  }, [setCard, option])
 
 
   if(!card) {
     return <></>;
   };
 
-  
-
   return (
 
     <section>
       <h1>ASTRO</h1>
         <h2>Catalogue de Messier</h2>
-        <div id="album_Messier">
-          { 
-              card.map( objet => (
-                <Card key={objet.IdMessier} objet={objet}></Card>
-              ))
-          }
-        </div>
+          <select onChange={()=>filtre()} name="TypeMessier" id="type_select">
+            <option value="All">--Sélectionner un type--</option>
+            <option value="Galaxie">Galaxies</option>
+            <option value="Nébuleuse">Nébuleuses</option>
+            <option value="Nébuleuse Planétaire">Nébuleuses planétaires</option>
+            <option value="Amas Globulaire">Amas globulaires</option>
+            <option value="Amas Ouvert">Amas Ouverts</option>
+          </select>
+
+            <div id="album_Messier">
+              { 
+                  card.map( objet => (
+                    <Card key={objet.IdMessier} objet={objet}></Card>
+                  ))
+              }
+            </div>
         
     </section>
   )

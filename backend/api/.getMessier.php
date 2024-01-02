@@ -1,11 +1,36 @@
 <?php
 
-  // if ($postData->action === all)  
-    try {
-        $query = "SELECT * FROM Messier ORDER BY IdMessier ASC";
+$Type = $_POST['option'];
 
-        $statement = $connect->prepare($query);
-        $statement->execute();
+
+switch($_POST['option']) {        
+    case "All":
+        $query = "SELECT * FROM Messier ORDER BY IdMessier ASC";
+        break;
+    case "Galaxie":
+        $query = "SELECT * FROM Messier WHERE Type = :Type ORDER BY IdMessier ASC";
+        break; 
+    case "Nébuleuse":
+        $query = "SELECT * FROM Messier WHERE Type = :Type ORDER BY IdMessier ASC";
+        break;
+    case "Nébuleuse Planétaire":
+        $query = "SELECT * FROM Messier WHERE Type = :Type ORDER BY IdMessier ASC";
+        break;
+    case "Amas Globulaire":
+        $query = "SELECT * FROM Messier WHERE Type = :Type ORDER BY IdMessier ASC";
+        break;
+    case "Amas Ouvert":
+        $query = "SELECT * FROM Messier WHERE Type = :Type ORDER BY IdMessier ASC";
+        break;
+}
+
+$statement = $connect->prepare($query);
+if ($Type !== "All")    
+{
+    $statement->bindParam(':Type', $Type, PDO::PARAM_STR);
+}
+    
+$statement->execute();
 
         $data = $statement->fetchAll(PDO::FETCH_ASSOC);
         
@@ -17,11 +42,5 @@
         }else {
             echo json_encode($data);
         }        
-    }
-    catch (PDOException $e) {
-        $response = array(
-            "error" => "Erreur lors de la recuperation : " . $e->getMessage()
-        );
-        echo json_encode($response);
-    }
+    
 ?>
