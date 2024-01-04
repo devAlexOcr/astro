@@ -1,7 +1,9 @@
-import Card from './components/Card';
-
-import './App.css'
 import { useEffect, useState} from 'react';
+
+import Card from '../components/Card';
+
+import './Messier.css'
+
 
 
 
@@ -9,14 +11,13 @@ function App() {
 
   const [card, setCard] = useState([]);
   const [option, setOption] = useState("All")
+  
   function filtre() {
     const select = document.querySelector('select')
-    console.log(select.value)
     setOption(select.value)
   };
 
   useEffect(() => {
-    filtre();
     fetch('https://astro.alexandrepaucdetoc.fr/get',
       {
         method: 'POST',
@@ -49,7 +50,7 @@ function App() {
   return (
 
     <section>
-      <h1>ASTRO</h1>
+     
         <h2>Catalogue de Messier</h2>
           <select onChange={()=>filtre()} name="TypeMessier" id="type_select">
             <option value="All">--Sélectionner un type--</option>

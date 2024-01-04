@@ -1,0 +1,12 @@
+form {
+    display: flex;
+    flex-direction: column;
+}
+input {
+    margin: 1vw;
+    font-size: 2vw;
+}
+button {
+    background-color: white!important;
+    margin: 2vw;
+}
