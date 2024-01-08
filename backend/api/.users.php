@@ -6,7 +6,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 throw new Exception("Erreur lors de la lecture des données JSON du login.");
             }
 
-        $Pseudo = $postData['pseudo'];
+        $Pseudo = htmlspecialchars($postData['pseudo']);
         $Password = password_hash($postData['password'], PASSWORD_DEFAULT);
 
         // verification qu'il n'y a pas de compte deja créé avec ce pseudo
@@ -21,6 +21,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         // si pseudo non trouvé, ajout du nouveau user
             if(count($data) === 0) {
+              
                 $query = "INSERT INTO users (pseudo, password) VALUES (:pseudo, :password)";
 
                 $statement = $connect->prepare($query);
@@ -34,8 +35,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 $rep[0]['id'] = $lastId;
                 echo json_encode($rep);
             }
-            else { 
-                $rep[0]['message'] = "Pseudo déjà connu";
+            if (count($data) === 1) {
+                $hash = $data[0]["Password"];
+                if(password_verify($postData['password'], $hash)) {
+                    // fusion des tables Messier et objetUser
+                    $rep[0]['message'] = "Utilisateur reconnu";
+                    $rep[0]['status'] = "Connected";
+                } else {                 
+                    $rep[0]['message'] = "paire Pseudo / Password incorrect";
+                    $rep[0]['status'] = "Disconnect";
+                    $rep[0]['hash'] = $hash;
+                    $rep[0]['Password'] = $Password;
+                }
                 echo json_encode($rep);
             }
         }
