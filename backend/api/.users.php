@@ -31,30 +31,44 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 $lastId = $connect->lastInsertId();
 
+                // Creation de la Table $postData['pseudo']
+
+                $queryCreateTable = "CREATE TABLE " . $postData['pseudo'] . "Messier" . " (
+                    IdMessier INT(11) NOT NULL, 
+                    Image BLOB NOT NULL,
+                    date DATE NOT NULL
+                )";
+
+                $statement = $connect->prepare($queryCreateTable);
+                $statement->execute();
+
                 $rep[0]['pseudo'] = $Pseudo;
                 $rep[0]['id'] = $lastId;
-                echo json_encode($rep);
+                $rep[1]['SQL'] = "Table created";
+                
             }
             if (count($data) === 1) {
                 $hash = $data[0]["Password"];
                 if(password_verify($postData['password'], $hash)) {
-                    // fusion des tables Messier et objetUser
+
+                    // JOIN les table users et messiers
+
                     $rep[0]['message'] = "Utilisateur reconnu";
                     $rep[0]['status'] = "Connected";
+                    
                 } else {                 
                     $rep[0]['message'] = "paire Pseudo / Password incorrect";
                     $rep[0]['status'] = "Disconnect";
-                    $rep[0]['hash'] = $hash;
-                    $rep[0]['Password'] = $Password;
                 }
-                echo json_encode($rep);
+
+                
             }
         }
         catch (PDOException $e) {
-            $response = array(
+            $res = array(
                 "error" => "Erreur lors login : " . $e->getMessage()
-            );
-            echo json_encode($response);
+            ); 
         }
+        echo json_encode($rep);
 }
 ?>
