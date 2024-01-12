@@ -1,0 +1,33 @@
+#ObjetMessier {
+    width: 100%;
+    margin: auto;
+}
+
+h2 {
+    text-align: center;
+    padding: 1%;
+    margin: 1%;
+    font-size: 3rem;
+}
+
+#boxImage {
+    min-height: 65vh;
+    display: flex;
+}
+
+#ImageTemoin, #ImageUser {
+    width: 50%;
+}
+
+#ImageUser {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#ImageTemoin {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}

@@ -1,0 +1,18 @@
+#header {
+    width: 100%;
+}
+
+#nav_bar{
+    display: flex;
+    justify-content: space-between;
+}
+
+#navigation {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#header a{
+    padding: 2vw;
+}

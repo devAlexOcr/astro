@@ -1,13 +1,14 @@
 import { useEffect, useState} from 'react';
 
-import Card from '../components/Card';
+import Card from '../components/Messier/Card';
 
 import './Messier.css'
+import { Link } from 'react-router-dom';
 
 
 
 
-function App() {
+function App({}) {
 
   const [card, setCard] = useState([]);
   const [option, setOption] = useState("All")
@@ -29,7 +30,7 @@ function App() {
     )
     .then(res => {
       if(!res.ok) {
-        throw new Error('Erreur HTTP : ${res.status}');
+        throw new Error(`Erreur HTTP : ${res.status}`);
       }
         return res.json();
     })
@@ -49,7 +50,7 @@ function App() {
 
   return (
 
-    <section>
+    <section id='Messier'>
      
         <h2>Catalogue de Messier</h2>
           <select onChange={()=>filtre()} name="TypeMessier" id="type_select">
@@ -64,7 +65,9 @@ function App() {
             <div id="album_Messier">
               { 
                   card.map( objet => (
+                    <Link to={/messier/ + objet.IdMessier} key={objet.name}>
                     <Card key={objet.IdMessier} objet={objet}></Card>
+                    </Link>
                   ))
               }
             </div>

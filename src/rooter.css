@@ -3,10 +3,17 @@
   line-height: 1.5;
   font-weight: 400;
 
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-width: 90vw;
+  min-height: 100vh;
+  margin: 0 auto;
 }
 
 a {
@@ -53,6 +60,15 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+#background_video {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
@@ -66,11 +82,4 @@ button:focus-visible {
   }
 }
 
-#background_video {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  min-width: 100%;
-  min-height: 100%;
-  z-index: -1;
-}
+

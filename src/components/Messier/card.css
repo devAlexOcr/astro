@@ -1,0 +1,22 @@
+#card {
+    width: 14vw;
+    height: 50vh;
+    background: linear-gradient(45deg, rgba(0,0,0,1) 0%, rgba(0,53,94,1) 100%);
+    border-radius: 20px;
+    margin: 2%;
+}
+
+#card > * {
+    margin: 0;
+}
+#card h3, #card p {
+    padding-top: 5%;
+}
+#card #imageCard {
+    margin-top: 5%;
+    height: 50%;
+    border: 2px solid black;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}

@@ -5,13 +5,13 @@ import './card.css';
 
 function Card ({objet}) {
 
-
-
+    const styleImage = { backgroundImage: `url('${objet.ImageTemoin}')` }
+    
     return (
         <div id='card'>
             <h3>Messier N°{objet.IdMessier}</h3>
             <p>{objet.Type}</p>
-            <img src='assets/images/scope.png' alt=''></img>
+            <div id='imageCard' style={styleImage} ></div>
             <p>{objet.Name}</p>
             <p>{objet.Constellation}</p>
             <p>{objet.Periode}</p>
