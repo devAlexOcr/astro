@@ -1,0 +1,19 @@
+#Titre {
+    margin: 0;
+    color: rgba(225,225,225, .01);
+    background-image: 
+        url("https://smd-cms.nasa.gov/wp-content/uploads/2023/04/potw1536a-jpg.webp?w=2048&format=webp"),
+        url("https://smd-cms.nasa.gov/wp-content/uploads/2023/04/hubble_birthofstars_0-jpg.webp?w=2048&format=webp"),
+        url("https://smd-cms.nasa.gov/wp-content/uploads/2023/04/sombrero-galaxy-hubble-jpg.webp?w=2048&format=webp");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: -2vw 2vw, 17.8vw 3vw, 31vw 1vw;
+    -webkit-background-clip: text;
+}
+
+h1 {
+    font-family: 'Genos';
+    font-size: 12vw;
+    font-style: italic;
+    margin: 0;
+}
